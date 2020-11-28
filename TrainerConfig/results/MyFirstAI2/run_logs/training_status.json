@@ -1,0 +1,48 @@
+{
+    "Jumper": {
+        "checkpoints": [
+            {
+                "steps": 7651,
+                "file_path": "results\\MyFirstAI2\\Jumper\\Jumper-7651.onnx",
+                "reward": -0.89817879773331,
+                "creation_time": 1606536099.2803152
+            },
+            {
+                "steps": 16513,
+                "file_path": "results\\MyFirstAI2\\Jumper\\Jumper-16513.onnx",
+                "reward": -0.8928134469173006,
+                "creation_time": 1606536506.3631406
+            },
+            {
+                "steps": 21333,
+                "file_path": "results\\MyFirstAI2\\Jumper\\Jumper-21333.onnx",
+                "reward": -0.9057591525515961,
+                "creation_time": 1606536671.3771002
+            },
+            {
+                "steps": 35080,
+                "file_path": "results\\MyFirstAI2\\Jumper\\Jumper-35080.onnx",
+                "reward": -0.8922018273434508,
+                "creation_time": 1606537104.3147798
+            },
+            {
+                "steps": 36147,
+                "file_path": "results\\MyFirstAI2\\Jumper\\Jumper-36147.onnx",
+                "reward": -0.9028571367263794,
+                "creation_time": 1606537333.2847445
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 36147,
+            "file_path": "results\\MyFirstAI2\\Jumper.onnx",
+            "reward": -0.9028571367263794,
+            "creation_time": 1606537333.2847445
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.22.0",
+        "torch_version": "1.7.0",
+        "tensorflow_version": -1
+    }
+}
