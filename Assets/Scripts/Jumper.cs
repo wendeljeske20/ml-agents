@@ -7,56 +7,156 @@ using UnityEngine;
 
 public class Jumper : Agent
 {
-	[SerializeField] 
+	[SerializeField]
+	private float moveTime;
+
+	[SerializeField]
 	private float jumpForce;
-	[SerializeField] 
+
+	[SerializeField]
 	private KeyCode jumpKey;
 
-	private bool jumpIsReady = true;
-	private Rigidbody rBody;
+	[NonSerialized]
+	public Transform[] roads;
+
+	private int currentRoadIndex;
+
+	private bool jumping;
+	private bool moving;
+	private Rigidbody rb;
 	private Vector3 startingPosition;
-	[SerializeField]
+
 	private int score = 0;
 	public event Action OnReset;
 
 	public override void Initialize()
 	{
-		rBody = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
+		roads = Spawner.main.roads;
+		currentRoadIndex = roads.Length / 2;
+
+		Vector3 position = transform.position;
+		position.x = roads[currentRoadIndex].position.x;
+		transform.position = position;
 		startingPosition = transform.position;
 	}
 
+	private void FixedUpdate()
+	{
+		if (!jumping && !moving)
+		{
+			RequestDecision();
+		}
+
+		Vector3 newPosition = transform.position;
+		newPosition.x = roads[currentRoadIndex].position.x;
+		transform.position = Vector3.MoveTowards(transform.position, newPosition, moveTime);
+		moving = transform.position != newPosition;
+	}
+
+	private void MoveLeft()
+	{
+		if (moving || currentRoadIndex == 0)
+		{
+			return;
+		}
+		currentRoadIndex--;
+	}
+
+	private void MoveRight()
+	{
+		if (moving || currentRoadIndex == roads.Length - 1)
+		{
+			return;
+		}
+
+		currentRoadIndex++;
+	}
+
+	//private IEnumerator MoveLeft()
+	//{
+	//	if (moving || currentRoadIndex == 0)
+	//	{
+	//		yield break;
+	//	}
+	//	currentRoadIndex--;
+	//	Vector3 newPosition = transform.position;
+	//	newPosition.x = roads[currentRoadIndex].position.x;
+	//	moving = true;
+
+	//	while (transform.position != newPosition)
+	//	{
+	//		transform.position = Vector3.MoveTowards(transform.position, newPosition, moveTime);
+	//		yield return null;
+	//	}
+
+	//	moving = false;
+	//}
+
+	//private IEnumerator MoveRight()
+	//{
+	//	if (moving || currentRoadIndex == roads.Length - 1)
+	//	{
+	//		yield break;
+	//	}
+
+	//	currentRoadIndex++;
+	//	Vector3 newPosition = transform.position;
+	//	newPosition.x = roads[currentRoadIndex].position.x;
+	//	moving = true;
+
+	//	while (transform.position != newPosition)
+	//	{
+	//		transform.position = Vector3.MoveTowards(transform.position, newPosition, moveTime);
+	//		yield return null;
+	//	}
+
+	//	moving = false;
+	//}
+
 	private void Jump()
 	{
-		if (jumpIsReady)
+		if (!moving && !jumping)
 		{
-			rBody.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
-			jumpIsReady = false;
+			rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+			jumping = true;
 		}
 	}
 
 	private void Reset()
 	{
 		score = 0;
-		jumpIsReady = true;
-
+		jumping = false;
+		moving = false;
+		StopAllCoroutines();
 		//Reset Movement and Position
 		transform.position = startingPosition;
-		rBody.velocity = Vector3.zero;
+		currentRoadIndex = roads.Length / 2;
+		rb.velocity = Vector3.zero;
 
 		OnReset?.Invoke();
 	}
 
-	private void FixedUpdate()
-	{
-		if (jumpIsReady)
-		{
-			RequestDecision();
-		}
-	}
-
 	public override void OnActionReceived(float[] vectorAction)
 	{
+		Debug.Log(Mathf.FloorToInt(vectorAction[0]));
+
+		//if (moving || jumping)
+		{
+		//	return;
+		}
+
 		if (Mathf.FloorToInt(vectorAction[0]) == 1)
+		{
+			//StartCoroutine(MoveLeft());
+			MoveLeft();
+		}
+		else if (Mathf.FloorToInt(vectorAction[0]) == 2)
+		{
+			//StartCoroutine(MoveRight());
+			MoveRight();
+		}
+		else if (Mathf.FloorToInt(vectorAction[0]) == 3)
 		{
 			Jump();
 		}
@@ -71,9 +171,17 @@ public class Jumper : Agent
 	{
 		actionsOut[0] = 0;
 
-		if (Input.GetKey(jumpKey))
+		if (Input.GetKey(KeyCode.A))
 		{
 			actionsOut[0] = 1;
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			actionsOut[0] = 2;
+		}
+		else if (Input.GetKey(jumpKey))
+		{
+			actionsOut[0] = 3;
 		}
 	}
 
@@ -81,11 +189,11 @@ public class Jumper : Agent
 	{
 		if (collidedObj.gameObject.CompareTag("Street"))
 		{
-			jumpIsReady = true;
+			jumping = false;
 		}
 		else if (collidedObj.gameObject.CompareTag("Mover") || collidedObj.gameObject.CompareTag("DoubleMover"))
 		{
-			AddReward(-1.0f);
+			AddReward(-1f);
 			EndEpisode();
 		}
 	}

@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 /*
  * Spawns the Mover Objects (Enemies) with an interval you determine.
  */
-public class Spawner : MonoBehaviour
+public class Spawner : Singleton<Spawner>
 {
 	public Transform[] roads;
 
@@ -23,22 +23,28 @@ public class Spawner : MonoBehaviour
 	[SerializeField]
 	private float maxSpawnRate;
 
+	[SerializeField]
 	private Jumper jumper;
 
 	private List<GameObject> spawnedObjects = new List<GameObject>();
 
-	private void Awake()
-	{
-		jumper = GetComponentInChildren<Jumper>();
-		//Subscribes to Reset of Player
-		jumper.OnReset += DestroyAllSpawnedObjects;
+	int index;
 
+	protected override void Awake()
+	{
+		base.Awake();
+
+		jumper.roads = roads;
+		jumper.OnReset += DestroyAllSpawnedObjects;
+		jumper.enabled = true;
 		StartCoroutine(nameof(Spawn));
 	}
 
 	private IEnumerator Spawn()
 	{
-		Transform road = roads[Random.Range(0, roads.Length - 1)];
+		index = (index + 1) % roads.Length;
+		//Transform road = roads[Random.Range(0, roads.Length)];
+		Transform road = roads[index];
 		GameObject obj = Instantiate(GetRandomSpawnableFromList(), road.position, road.rotation, transform);
 		spawnedObjects.Add(obj);
 
@@ -48,7 +54,7 @@ public class Spawner : MonoBehaviour
 
 	private GameObject GetRandomSpawnableFromList()
 	{
-		int randomIndex = UnityEngine.Random.Range(0, spawnableObjects.Count);
+		int randomIndex = Random.Range(0, spawnableObjects.Count);
 		return spawnableObjects[randomIndex];
 	}
 
