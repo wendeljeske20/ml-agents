@@ -60,6 +60,7 @@ public class Spawner : Singleton<Spawner>
 
 	private void DestroyAllSpawnedObjects()
 	{
+		index = 0;
 		for (int i = spawnedObjects.Count - 1; i >= 0; i--)
 		{
 			Destroy(spawnedObjects[i]);

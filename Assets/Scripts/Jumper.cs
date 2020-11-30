@@ -139,12 +139,12 @@ public class Jumper : Agent
 
 	public override void OnActionReceived(float[] vectorAction)
 	{
-		Debug.Log(Mathf.FloorToInt(vectorAction[0]));
-
-		//if (moving || jumping)
+		if (moving || jumping)
 		{
-		//	return;
+			return;
 		}
+
+		//Debug.Log(Mathf.FloorToInt(vectorAction[0]));
 
 		if (Mathf.FloorToInt(vectorAction[0]) == 1)
 		{
@@ -156,9 +156,9 @@ public class Jumper : Agent
 			//StartCoroutine(MoveRight());
 			MoveRight();
 		}
-		else if (Mathf.FloorToInt(vectorAction[0]) == 3)
+		//else if (Mathf.FloorToInt(vectorAction[0]) == 3)
 		{
-			Jump();
+			//Jump();
 		}
 	}
 
@@ -193,7 +193,7 @@ public class Jumper : Agent
 		}
 		else if (collidedObj.gameObject.CompareTag("Mover") || collidedObj.gameObject.CompareTag("DoubleMover"))
 		{
-			AddReward(-1f);
+			SetReward(-1f);
 			EndEpisode();
 		}
 	}

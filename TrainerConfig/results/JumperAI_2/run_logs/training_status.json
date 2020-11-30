@@ -2,23 +2,35 @@
     "Jumper": {
         "checkpoints": [
             {
-                "steps": 612,
-                "file_path": "results\\JumperAI_2\\Jumper\\Jumper-612.onnx",
-                "reward": -0.8714285578046527,
-                "creation_time": 1606585736.2241905
+                "steps": 134241,
+                "file_path": "results\\JumperAI_2\\Jumper\\Jumper-134241.onnx",
+                "reward": -0.6199999749660492,
+                "creation_time": 1606774800.5959113
+            },
+            {
+                "steps": 233220,
+                "file_path": "results\\JumperAI_2\\Jumper\\Jumper-233220.onnx",
+                "reward": 5.316666814188163,
+                "creation_time": 1606775719.1339946
+            },
+            {
+                "steps": 359249,
+                "file_path": "results\\JumperAI_2\\Jumper\\Jumper-359249.onnx",
+                "reward": 23.25000050663948,
+                "creation_time": 1606777279.2036982
             }
         ],
         "final_checkpoint": {
-            "steps": 612,
+            "steps": 359249,
             "file_path": "results\\JumperAI_2\\Jumper.onnx",
-            "reward": -0.8714285578046527,
-            "creation_time": 1606585736.2241905
+            "reward": 23.25000050663948,
+            "creation_time": 1606777279.2036982
         }
     },
     "metadata": {
         "stats_format_version": "0.2.0",
         "mlagents_version": "0.22.0",
         "torch_version": "1.7.0",
-        "tensorflow_version": -1
+        "tensorflow_version": "2.3.1"
     }
 }
