@@ -18,13 +18,19 @@
                 "file_path": "results\\JumperAI_2\\Jumper\\Jumper-359249.onnx",
                 "reward": 23.25000050663948,
                 "creation_time": 1606777279.2036982
+            },
+            {
+                "steps": 399434,
+                "file_path": "results\\JumperAI_2\\Jumper\\Jumper-399434.onnx",
+                "reward": 122.90000265836716,
+                "creation_time": 1606778276.013496
             }
         ],
         "final_checkpoint": {
-            "steps": 359249,
+            "steps": 399434,
             "file_path": "results\\JumperAI_2\\Jumper.onnx",
-            "reward": 23.25000050663948,
-            "creation_time": 1606777279.2036982
+            "reward": 122.90000265836716,
+            "creation_time": 1606778276.013496
         }
     },
     "metadata": {

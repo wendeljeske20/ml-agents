@@ -8,17 +8,25 @@ using UnityEngine;
  */
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    private Rigidbody Rigidbody;
+	[SerializeField] private float speed;
+	private Rigidbody Rigidbody;
 
 
-    private void Awake()
-    {
-        Rigidbody = GetComponent<Rigidbody>();
-    }
+	private void Awake()
+	{
+		Rigidbody = GetComponent<Rigidbody>();
+	}
 
-    private void FixedUpdate()
-    {
-        Rigidbody.velocity = Vector3.back * speed;
-    }
+	private void FixedUpdate()
+	{
+		Rigidbody.velocity = Vector3.back * speed;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("wall"))
+		{
+			Destroy(gameObject);
+		}
+	}
 }
