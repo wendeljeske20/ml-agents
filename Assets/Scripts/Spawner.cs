@@ -24,7 +24,7 @@ public class Spawner : Singleton<Spawner>
 	private float maxSpawnRate;
 
 	[SerializeField]
-	private Jumper jumper;
+	private PlayerAgent jumper;
 
 	private List<GameObject> spawnedObjects = new List<GameObject>();
 
@@ -42,9 +42,9 @@ public class Spawner : Singleton<Spawner>
 
 	private IEnumerator Spawn()
 	{
-		index = (index + 1) % roads.Length;
-		//Transform road = roads[Random.Range(0, roads.Length)];
-		Transform road = roads[index];
+		//index = (index + 1) % roads.Length;
+		Transform road = roads[Random.Range(0, roads.Length)];
+		//Transform road = roads[index];
 		GameObject obj = Instantiate(GetRandomSpawnableFromList(), road.position, road.rotation, transform);
 		spawnedObjects.Add(obj);
 
