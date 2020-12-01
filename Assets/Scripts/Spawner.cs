@@ -42,9 +42,9 @@ public class Spawner : Singleton<Spawner>
 
 	private IEnumerator Spawn()
 	{
-		index = (index + 1) % roads.Length;
-		//Transform road = roads[Random.Range(0, roads.Length)];
-		Transform road = roads[index];
+		//index = (index + 1) % roads.Length;
+		Transform road = roads[Random.Range(0, roads.Length)];
+		//Transform road = roads[index];
 		GameObject obj = Instantiate(GetRandomSpawnableFromList(), road.position, road.rotation, transform);
 		spawnedObjects.Add(obj);
 

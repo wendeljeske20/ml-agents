@@ -1069,7 +1069,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8332923510078364134}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361860584}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 496e60099adc54a08947c8cd10b4d686, type: 3}
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   spawnableObjects:
   - {fileID: 4417169525432353905, guid: c7301666fd2134c83ae82778a3b71552, type: 3}
   minSpawnRate: 0.5
-  maxSpawnRate: 0.5
+  maxSpawnRate: 0.8
   jumper: {fileID: 780887304}
 --- !u!4 &1111190587
 Transform:
@@ -2136,39 +2136,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1361860584 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 37595457190313696, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
-    type: 3}
-  m_PrefabInstance: {fileID: 8332923510078364134}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1361860585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361860584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor
-  m_DetectableTags:
-  - Mover
-  m_RaysPerDirection: 6
-  m_MaxRayDegrees: 64.9
-  m_SphereCastRadius: 0.2
-  m_RayLength: 20
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0.5
-  m_EndVerticalOffset: 0.5
 --- !u!1 &1663720495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,25 +3196,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1111190587}
     m_Modifications:
-    - target: {fileID: 103519137, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1278190609, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.92
       objectReference: {fileID: 0}
-    - target: {fileID: 517083928, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1278190610, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
+      propertyPath: m_RaysPerDirection
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 767102405, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1179769822, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1341684959, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1278190610, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
+      propertyPath: m_MaxRayDegrees
+      value: 65.1
       objectReference: {fileID: 0}
     - target: {fileID: 37595457190313696, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
         type: 3}
@@ -3309,25 +3268,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8332923508773382132, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
+    - target: {fileID: 8332923508773382130, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
         type: 3}
-      propertyPath: jumpForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8348624453428304592, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
-        type: 3}
-      propertyPath: m_InferenceDevice
+      propertyPath: m_Size.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8348624453428304592, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
+    - target: {fileID: 8332923508773382130, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
         type: 3}
-      propertyPath: m_BrainParameters.VectorObservationSize
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8348624453428304592, guid: 6f0474be6e860c74bb0c92a7bb9b9973,
-        type: 3}
-      propertyPath: m_BrainParameters.VectorActionSize.Array.data[0]
-      value: 3
+      propertyPath: m_Size.z
+      value: 2.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f0474be6e860c74bb0c92a7bb9b9973, type: 3}
