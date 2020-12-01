@@ -24,7 +24,7 @@ public class Spawner : Singleton<Spawner>
 	private float maxSpawnRate;
 
 	[SerializeField]
-	private Jumper jumper;
+	private Player jumper;
 
 	private List<GameObject> spawnedObjects = new List<GameObject>();
 
